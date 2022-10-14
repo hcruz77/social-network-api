@@ -8,16 +8,16 @@ const {
   removeAssignment,
 } = require('../../controllers/studentController');
 
-// /api/students
+// /get all users, and create a new user
 router.route('/').get(getStudents).post(createStudent);
 
-// /api/students/:studentId
+// change to get single user, delete user + add update user router here
 router.route('/:studentId').get(getSingleStudent).delete(deleteStudent);
 
-// /api/students/:studentId/assignments
+// you will pass your userId/friends instead of studentId/assignments, and run your addFriend controller here
 router.route('/:studentId/assignments').post(addAssignment);
 
-// /api/students/:studentId/assignments/:assignmentId
+// This will be for your delete friend controller
 router.route('/:studentId/assignments/:assignmentId').delete(removeAssignment);
 
 module.exports = router;
