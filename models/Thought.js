@@ -12,8 +12,10 @@ const thoughtSchema = new Schema(
     },
     createdAt: {
       type: Date,
-      // required: true,
-      // default: Date.now,
+      default: Date.now,
+      get: (date) => {
+        return new Date(date).toLocaleString();
+      },
     },
     username: {
       type: String,
@@ -26,10 +28,15 @@ const thoughtSchema = new Schema(
   {
     toJSON: {
       virtuals: true,
+      getters: true,
     },
     id: false,
   }
 );
+
+thoughtSchema.virtual('reactionCount').get(function () {
+  return this.reactions.length;
+})
 
 const Thought = model('Thought', thoughtSchema);
 
