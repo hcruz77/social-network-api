@@ -78,7 +78,7 @@ module.exports = {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       //YOU WILL PASS FRIEND-ID INSTEAD OF REQ.BODY
-      { $addToSet: { reactions: req.body } },
+      { $addToSet: { reactions: req.reactionBody } },
       { runValidators: true, new: true }
     )
       .then((thoughts) =>
