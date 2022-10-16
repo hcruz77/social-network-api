@@ -1,23 +1,20 @@
 const router = require('express').Router();
 const {
-  getStudents,
-  getSingleStudent,
-  createStudent,
-  deleteStudent,
-  addAssignment,
-  removeAssignment,
-} = require('../../controllers/studentController');
+  getUsers,
+  getSingleUser,
+  createUser,
+  deleteUser,
+  updateUser,
+  addFriend,
+  removeFriend,
+} = require('../../controllers/userController.js');
 
-// /get all users, and create a new user
-router.route('/').get(getStudents).post(createStudent);
+router.route('/').get(getUsers).post(createUser);
 
-// change to get single user, delete user + add update user router here
-router.route('/:studentId').get(getSingleStudent).delete(deleteStudent);
+router.route('/:userId').get(getSingleUser).put(updateUser).delete(deleteUser);
 
-// you will pass your userId/friends instead of studentId/assignments, and run your addFriend controller here
-router.route('/:studentId/assignments').post(addAssignment);
+router.route('/:userId/friends').post(addFriend);
 
-// This will be for your delete friend controller
-router.route('/:studentId/assignments/:assignmentId').delete(removeAssignment);
+router.route('/:userId/friends/:friendsId').delete(removeFriend);
 
 module.exports = router;

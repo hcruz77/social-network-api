@@ -10,7 +10,7 @@ module.exports = {
     Thought.findOne({ _id: req.params.thoughtId })
       .then((thoughts) =>
         !thoughts
-          ? res.status(404).json({ message: 'No video with that ID' })
+          ? res.status(404).json({ message: 'No thought with that ID' })
           : res.json(thoughts)
       )
       .catch((err) => res.status(500).json(err));
