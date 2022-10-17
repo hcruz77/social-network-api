@@ -39,5 +39,27 @@ module.exports = {
 });
   },
 
+  deleteUser(req, res) {
+    User.findOneAndRemove({ _id: req.params.userId })
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'No users with this id!' })
+          : Thought.findOneAndUpdate(
+          { users: req.params.userId },
+              { $pull: { users: req.params.userId } },
+              { new: true }
+         )
+      )
+      .then((thought) =>
+        !thought
+          ? res
+              .status(404)
+              .json({ message: 'User deleted, but no thought found!' })
+          : res.json({ message: 'User successfully deleted!' })
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+
+
   //look at your thoughts controller, you can replicate a lot of the code from your thoughts controllers. your reactions will replicate thoughts somewhat, but 
 };
