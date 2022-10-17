@@ -1,4 +1,6 @@
+
 const { Thought, User } = require('../models');
+
 
 module.exports = {
   getThoughts(req, res) {
@@ -77,8 +79,7 @@ module.exports = {
   addReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      //YOU WILL PASS FRIEND-ID INSTEAD OF REQ.BODY
-      { $addToSet: { reactions: req.reactionBody } },
+      { $addToSet: { reactions: req.body } },
       { runValidators: true, new: true }
     )
       .then((thoughts) =>
