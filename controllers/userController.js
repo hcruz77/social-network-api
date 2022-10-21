@@ -60,6 +60,34 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 
-
-  //look at your thoughts controller, you can replicate a lot of the code from your thoughts controllers. your reactions will replicate thoughts somewhat, but 
+  addFriend(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $addToSet: { friends: req.body } },
+      { runValidators: true, new: true }
+    )
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'No user with this id!' })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+ 
+  removeFriend(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.friendId },
+      { $pull: { friends: { friendId: req.params.friendId } } },
+      { runValidators: true, new: true }
+    )
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'No user with this id!' })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
 };
+
+
+ 
