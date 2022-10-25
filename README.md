@@ -7,4 +7,4 @@ This is an API for a social network application using a NoSQL database, where us
 Once the user opens the application in insomnia, the user is able to access POST, PUT, and DELETE routes for users, thoughts, friends, and reactions by selecting the designated routes prepared in the application. The user must input a chosen id for each field into the URL, and send the data to get a response.
 
 ## Demo Video
-[Demo video]()
+[Demo video](https://drive.google.com/file/d/1pE9S-6zwd3RsZojiUURySeC_qY0MdBVD/view?usp=sharing)
